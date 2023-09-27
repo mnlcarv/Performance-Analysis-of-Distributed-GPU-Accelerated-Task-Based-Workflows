@@ -203,7 +203,8 @@
 -----------------------------------------------------------------------------
 
 The files in the "/dislib" folder are from the "gpu-support" branch of dislib project
-(repository available at: https://github.com/bsc-wdc/dislib/tree/gpu-support), which is available under a "Apache 2.0" license.
+(repository available at: https://github.com/bsc-wdc/dislib/tree/gpu-support), which
+is available under a "Apache 2.0" license.
 The following files have been changed to log execution times:
 
 dislib/cluster/kmeans/base.py
