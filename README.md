@@ -8,7 +8,7 @@ runcompss run_matmul.py
 
 In a cluster, a job can be submmited using enqueue_compss command. For more details, please check the official documentation of COMPSs [here](https://compss-doc.readthedocs.io/en/stable/index.html).
 
-After running the example, the raw execution time logs be saved to a csv file located at "experiments/results/tb_experiments_raw.csv".
+After running the example, the raw execution time logs are saved to a csv file located at "experiments/results/tb_experiments_raw.csv".
 
 ## Dependencies
 - pycompss
