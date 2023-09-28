@@ -24,8 +24,8 @@ if __name__ == '__main__':
     # Execution modes:
     # id_device = 1: execution with synchornized function calls to extract total execution times for CPUs
     # id_device = 2: execution with synchornized function calls to extract total execution times for GPUs
-    # id_device = 3: execution with synchornized function calls to extract task user code execution times for CPUs
-    # id_device = 4: execution with synchornized function calls and CUDA events to extract task user code execution times for GPUs
+    # id_device = 3: execution to extract task user code execution times for CPUs
+    # id_device = 4: execution with CUDA events to extract task user code execution times for GPUs
     # id_device = 5: execution with synchornized function calls to extract parallel tasks execution times for CPUs
     # id_device = 6: execution with synchornized function calls to extract parallel tasks execution times for GPUs
     id_device = 2
