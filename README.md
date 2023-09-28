@@ -11,7 +11,7 @@ In a cluster, the applications are submitted via batch jobs. A job can be submit
 After running the example, the raw execution time logs are saved to a csv file located at ```experiments/results/tb_experiments_raw.csv```.
 
 ## Raw Experimental Results
-The raw experimental results extracted for the experiments are available at ```experiments/results/raw_experimental_results```.
+The raw experimental results extracted for the experiments presented in the paper are available [here](https://www.dropbox.com/scl/fo/x17joqjx9ywalyckqhki0/h?rlkey=nxwki5444g6cx82gin1u23ywu&dl=0).
 
 ## Dependencies
 - pycompss
