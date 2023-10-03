@@ -1,5 +1,5 @@
 # Introduction
-This is the public repository of paper "Performance Analysis of Distributed GPU-Accelerated Task-Based Workflows", which includes the raw experimental results and source code to extract different execution times from dislib implementations of Matmul and K-means.
+This is the public repository of paper "Performance Analysis of Distributed GPU-Accelerated Task-Based Workflows", which includes the source code to extract different execution times from dislib implementations of Matmul and K-means.
 
 ## How to Run
 The demo applications (```run_matmul.py``` and ```run_kmeans.py```) are executed with the "runcompss" command as shown in the example below:
@@ -9,9 +9,6 @@ runcompss run_matmul.py
 In a cluster, the applications are submitted via batch jobs. A job can be submitted using "enqueue_compss" command. For more details, please check the official documentation of COMPSs [here](https://compss-doc.readthedocs.io/en/stable/index.html).
 
 After running the example, the raw execution time logs are saved to a csv file located at ```experiments/results/tb_experiments_raw.csv```.
-
-## Raw Experimental Results
-The raw experimental results extracted for the experiments presented in the paper are available [here](https://www.dropbox.com/scl/fo/x17joqjx9ywalyckqhki0/h?rlkey=nxwki5444g6cx82gin1u23ywu&dl=0).
 
 ## Dependencies
 - pycompss
