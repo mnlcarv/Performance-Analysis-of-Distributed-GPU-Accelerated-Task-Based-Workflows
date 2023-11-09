@@ -17,4 +17,6 @@ After running the example, the raw execution time logs are saved to a csv file l
 - cupy
 
 ## Code References
+[Matmul](https://github.com/mnlcarv/Performance-Analysis-of-Distributed-GPU-Accelerated-Task-Based-Workflows/blob/main/dislib/data/array.py): dislib implementation of the Matmul algorithm.
+[K-means](https://github.com/mnlcarv/Performance-Analysis-of-Distributed-GPU-Accelerated-Task-Based-Workflows/blob/main/dislib/cluster/kmeans/base.py): dislib implementation of the K-means algorithm.
 [dislib](https://github.com/bsc-wdc/dislib/tree/gpu-support): reference for dislib GPU support branch repository.
