@@ -1,0 +1,2 @@
+"id_parameter_type","ds_parameter_type","ds_parameter_attribute","ds_compss_version","ds_dislib_version","ds_schdeuler","nr_cluster","ds_storage","bl_transpose_matrix"
+"1","VAR_GRID_SHAPE_MATMUL_1","32MAXCORES_1","TrunkCT","0.6.4","es.bsc.compss.scheduler.orderstrict.fifo.FifoTS",NULL,"GPFS",False

@@ -31,8 +31,8 @@ if __name__ == '__main__':
     id_device = 2
     
     # Define number of iterations as 5
-    nr_iterations = 0
-    for i in range(nr_iterations + 1):
+    nr_iterations = 5
+    for i in range(nr_iterations):
 
         # Log only the total execution time (make sure that all tasks have finished by synchronizing them with compss_barrier)
         if id_device == 1 or id_device == 2:
@@ -40,7 +40,7 @@ if __name__ == '__main__':
             compss_barrier()
             start_total_execution_time = time.perf_counter()
             # Run KMeans using dislib
-            kmeans = KMeans(n_clusters=n_clusters, random_state=start_random_state, id_device=id_device, max_iter=5, tol=0, arity=48)
+            kmeans = KMeans(n_clusters=n_clusters, random_state=start_random_state, id_device=id_device, max_iter=5, tol=0, arity=48, nr_algorithm_iteration=i)
             kmeans.fit(x)
             compss_barrier()
             end_total_execution_time = time.perf_counter()
@@ -60,5 +60,5 @@ if __name__ == '__main__':
         else:
 
             # Run KMeans using dislib
-            kmeans = KMeans(n_clusters=n_clusters, random_state=start_random_state, id_device=id_device, max_iter=5, tol=0, arity=48)
+            kmeans = KMeans(n_clusters=n_clusters, random_state=start_random_state, id_device=id_device, max_iter=5, tol=0, arity=48, nr_algorithm_iteration=i)
             kmeans.fit(x)

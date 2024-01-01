@@ -9,4 +9,4 @@ __all__ = ['load_txt_file', 'load_svmlight_file', 'array', 'random_array',
            'load_mdcrd_file', 'load_hstack_npy_files', 'load_npy_files',
            'load_blocks_rechunk', 'matmul', 'matsubtract', 'save_txt',
            'zeros', 'full', 'matadd', 'concat_columns', 'identity', 'eye',
-           'util']
+           'util', 'generate_block', 'dot']

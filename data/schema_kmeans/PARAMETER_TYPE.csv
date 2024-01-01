@@ -1,0 +1,13 @@
+"id_parameter_type","ds_parameter_type","ds_parameter_attribute","ds_compss_version","ds_dislib_version","ds_schdeuler","nr_cluster","ds_storage","bl_transpose_matrix"
+"17","VAR_GRID_ROW_5","32MAXCORES_1","TrunkCT","0.6.4","es.bsc.compss.scheduler.orderstrict.fifo.FifoTS","10","GPFS",False
+"18","VAR_GRID_ROW_6","32MAXCORES_1","TrunkCT","0.6.4","es.bsc.compss.scheduler.orderstrict.fifo.FifoTS","100","GPFS",False
+"19","VAR_GRID_ROW_7","32MAXCORES_1","TrunkCT","0.6.4","es.bsc.compss.scheduler.orderstrict.fifo.FifoTS","1000","GPFS",False
+"20","VAR_GRID_ROW_8","32MAXCORES_1","TrunkCT","0.6.4","es.bsc.compss.scheduler.lookahead.successors.fifolocality.FifoLocalityTS","10","LOCAL_DISK",False
+"21","VAR_GRID_ROW_9","32MAXCORES_1","TrunkCT","0.6.4","es.bsc.compss.scheduler.lookahead.successors.fifolocality.FifoLocalityTS","100","LOCAL_DISK",False
+"22","VAR_GRID_ROW_10","32MAXCORES_1","TrunkCT","0.6.4","es.bsc.compss.scheduler.lookahead.successors.fifolocality.FifoLocalityTS","1000","LOCAL_DISK",False
+"23","VAR_GRID_ROW_11","32MAXCORES_1","TrunkCT","0.6.4","es.bsc.compss.scheduler.orderstrict.fifo.FifoTS","10","LOCAL_DISK",False
+"24","VAR_GRID_ROW_12","32MAXCORES_1","TrunkCT","0.6.4","es.bsc.compss.scheduler.orderstrict.fifo.FifoTS","100","LOCAL_DISK",False
+"25","VAR_GRID_ROW_13","32MAXCORES_1","TrunkCT","0.6.4","es.bsc.compss.scheduler.orderstrict.fifo.FifoTS","1000","LOCAL_DISK",False
+"26","VAR_GRID_ROW_14","32MAXCORES_1","TrunkCT","0.6.4","es.bsc.compss.scheduler.lookahead.successors.fifolocality.FifoLocalityTS","10","GPFS",False
+"27","VAR_GRID_ROW_15","32MAXCORES_1","TrunkCT","0.6.4","es.bsc.compss.scheduler.lookahead.successors.fifolocality.FifoLocalityTS","100","GPFS",False
+"28","VAR_GRID_ROW_16","32MAXCORES_1","TrunkCT","0.6.4","es.bsc.compss.scheduler.lookahead.successors.fifolocality.FifoLocalityTS","1000","GPFS",False

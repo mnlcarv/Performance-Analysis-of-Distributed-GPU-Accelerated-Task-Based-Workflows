@@ -1,0 +1,2 @@
+"id_resource","ds_resource","nr_nodes","nr_computing_units_cpu","nr_computing_units_gpu","vl_memory_size_per_cpu_computing_unit","vl_memory_size_per_gpu_computing_unit"
+"18","MINOTAURO_9_NODES_1_CORE","9","1","1","128000000000","12000000000"

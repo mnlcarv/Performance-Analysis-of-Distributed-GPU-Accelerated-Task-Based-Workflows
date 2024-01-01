@@ -1,0 +1,72 @@
+TABLE_NAME,TABLE_DESCRIPTION,COLUMN_NAME,DATA_TYPE,IS_NOT_NULL,IS_PRIMARY_KEY,COLUMN_DESCRIPTION
+DEVICE,Dimension table used to define device (CPU or GPU),ID_DEVICE,BIGSERIAL,TRUE,TRUE,Primary key for table DEVICE
+DEVICE,,DS_DEVICE,VARCHAR,FALSE,FALSE,Device description
+ALGORITHM,Dimension table used to define algorithm,ID_ALGORITHM,BIGSERIAL,TRUE,TRUE,Primary key for table ALGORITHM
+ALGORITHM,,DS_ALGORITHM,VARCHAR,FALSE,FALSE,Algorithm description
+FUNCTION,Dimension table used to define function attributes by combining algorithm functions with device and algorithm,ID_FUNCTION,BIGSERIAL,TRUE,TRUE,Primary key for table FUNCTION
+FUNCTION,,CD_FUNCTION,BIGINT,FALSE,FALSE,Function code number (to identify an algorithm function task regardless if it is used for CPU or GPU)
+FUNCTION,,DS_FUNCTION,VARCHAR,FALSE,FALSE,Function task description
+FUNCTION,,ID_DEVICE,BIGINT,FALSE,FALSE,Primary key for table DEVICE
+FUNCTION,,ID_ALGORITHM,BIGINT,FALSE,FALSE,Primary key for table ALGORITHM
+CONFIGURATION,"Dimension table used to store multiple combinations of function, algorithm, and device",ID_CONFIGURATION,BIGSERIAL,TRUE,TRUE,Primary key for table CONFIGURATION
+CONFIGURATION,,CD_CONFIGURATION,BIGINT,FALSE,FALSE,Configuration code number (to identify an execution configuration)
+CONFIGURATION,,ID_ALGORITHM,BIGINT,FALSE,FALSE,Primary key for table ALGORITHM
+CONFIGURATION,,CD_FUNCTION,BIGINT,FALSE,FALSE,Function code number (to identify an algorithm function task regardless if it is used for CPU or GPU)
+CONFIGURATION,,ID_DEVICE,BIGINT,FALSE,FALSE,Primary key for table DEVICE
+RESOURCE,Dimension table used to define resource settings,ID_RESOURCE,BIGSERIAL,TRUE,TRUE,Primary key for table RESOURCE
+RESOURCE,,DS_RESOURCE,VARCHAR,FALSE,FALSE,Resource description
+RESOURCE,,NR_NODES,BIGINT,FALSE,FALSE,Total number of nodes used (master and workers)
+RESOURCE,,NR_COMPUTING_UNITS_CPU,BIGINT,FALSE,FALSE,Number of CPU cores required to run tasks
+RESOURCE,,NR_COMPUTING_UNITS_GPU,BIGINT,FALSE,FALSE,Number of GPU devices required to run tasks
+RESOURCE,,VL_MEMORY_SIZE_PER_CPU_COMPUTING_UNIT,BIGINT,FALSE,FALSE,Available RAM per worker node
+RESOURCE,,VL_MEMORY_SIZE_PER_GPU_COMPUTING_UNIT,BIGINT,FALSE,FALSE,Available GPU memory per worker node
+DATASET,Dimension table used to define dataset,ID_DATASET,BIGSERIAL,TRUE,TRUE,Primary key for table DATASET
+DATASET,,DS_DATASET,VARCHAR,FALSE,FALSE,Dataset descriptiom
+DATASET,,VL_DATASET_MEMORY_SIZE,BIGINT,FALSE,FALSE,Dataset total size in Bytes
+DATASET,,DS_DATA_TYPE,VARCHAR,FALSE,FALSE,Dataset element data type description
+DATASET,,VL_DATA_TYPE_MEMORY_SIZE,BIGINT,FALSE,FALSE,Dataset element data type size
+DATASET,,VL_DATASET_DIMENSION,BIGINT,FALSE,FALSE,Total number of elements in the dataset
+DATASET,,VL_DATASET_ROW_DIMENSION,BIGINT,FALSE,FALSE,Total number of rows in the dataset
+DATASET,,VL_DATASET_COLUMN_DIMENSION,BIGINT,FALSE,FALSE,Total number of columns in the dataset
+DATASET,,NR_RANDOM_STATE,BIGINT,FALSE,FALSE,Seed to generate random values
+DATASET,,VL_DATA_SPARSITY,DOUBLE PRECISION,FALSE,FALSE,Portion of the dataset with sparse elements
+DATASET,,VL_DATA_SKEWNESS,DOUBLE PRECISION,FALSE,FALSE,Portion of the dataset with skewed elements
+PARAMETER_TYPE,Dimension table used to store additional parameters,ID_PARAMETER_TYPE,BIGSERIAL,TRUE,TRUE,Primary key for table PARAMETER_TYPE
+PARAMETER_TYPE,,DS_PARAMETER_TYPE,VARCHAR,FALSE,FALSE,Parameter type description
+PARAMETER_TYPE,,DS_PARAMETER_ATTRIBUTE,VARCHAR,FALSE,FALSE,Parameter attribute description
+PARAMETER_TYPE,,DS_COMPSS_VERSION,VARCHAR,FALSE,FALSE,Version of the system used
+PARAMETER_TYPE,,DS_DISLIB_VERSION,VARCHAR,FALSE,FALSE,Version of the library used
+PARAMETER_TYPE,,DS_SCHDEULER,VARCHAR,FALSE,FALSE,Scheduler description
+PARAMETER_TYPE,,NR_CLUSTER,VARCHAR,FALSE,FALSE,Algorithm-specific parameter (#clusters in K-means)
+PARAMETER_TYPE,,DS_STORAGE,VARCHAR,FALSE,FALSE,Storage description
+PARAMETER_TYPE,,BL_TRANSPOSE_MATRIX,BOOLEAN,FALSE,FALSE,Algorithm-specific parameter (transpose matrix in Matmul dislib)
+PARAMETER,Dimension table used to store parameters to execute (each row in this table is a unique combination of all the previous parameters with different block sizes),ID_PARAMETER,BIGSERIAL,TRUE,TRUE,Primary key for table PARAMETER
+PARAMETER,,CD_PARAMETER,BIGINT,FALSE,FALSE,Parameter code number
+PARAMETER,,CD_CONFIGURATION,BIGINT,FALSE,FALSE,Configuration code number (to identify an execution configuration)
+PARAMETER,,ID_ALGORITHM,BIGINT,FALSE,FALSE,Primary key for table ALGORITHM
+PARAMETER,,ID_FUNCTION,BIGINT,FALSE,FALSE,Primary key for table FUNCTION
+PARAMETER,,ID_DATASET,BIGINT,FALSE,FALSE,Primary key for table DATASET
+PARAMETER,,ID_RESOURCE,BIGINT,FALSE,FALSE,Primary key for table RESOURCE
+PARAMETER,,ID_PARAMETER_TYPE,BIGINT,FALSE,FALSE,Primary key for table PARAMETER_TYPE
+PARAMETER,,NR_ITERATIONS,BIGINT,FALSE,FALSE,Total number of algorithm iterations
+PARAMETER,,VL_GRID_ROW_DIMENSION,BIGINT,FALSE,FALSE,Total number of rows per grid
+PARAMETER,,VL_GRID_COLUMN_DIMENSION,BIGINT,FALSE,FALSE,Total number of columns per grid
+PARAMETER,,VL_BLOCK_ROW_DIMENSION,BIGINT,FALSE,FALSE,Total number of rows per block
+PARAMETER,,VL_BLOCK_COLUMN_DIMENSION,BIGINT,FALSE,FALSE,Total number of columns per block
+PARAMETER,,VL_BLOCK_MEMORY_SIZE,BIGINT,FALSE,FALSE,Total size in Bytes per block
+PARAMETER,,VL_BLOCK_MEMORY_SIZE_PERCENT_CPU,DOUBLE PRECISION,FALSE,FALSE,Block memory size fraction with respect to the available RAM per node
+PARAMETER,,VL_BLOCK_MEMORY_SIZE_PERCENT_GPU,DOUBLE PRECISION,FALSE,FALSE,Block memory size fraction with respect to the available GPU memory per node
+EXPERIMENT_RAW,Fact table used to store execution times obtained from the execution of each combination of parameter,ID_EXPERIMENT,BIGSERIAL,TRUE,TRUE,Primary key for table EXPERIMENT_RAW
+EXPERIMENT_RAW,,ID_PARAMETER,BIGINT,FALSE,FALSE,Primary key for table PARAMETER
+EXPERIMENT_RAW,,NR_ALGORITHM_ITERATION,BIGINT,FALSE,FALSE,Number of the algorithm iteration
+EXPERIMENT_RAW,,NR_FUNCTION_ITERATION,BIGINT,FALSE,FALSE,Number of the function task iteration
+EXPERIMENT_RAW,,NR_TASK,BIGINT,FALSE,FALSE,Number of the task generated
+EXPERIMENT_RAW,,VL_TOTAL_EXECUTION_TIME,DOUBLE PRECISION,FALSE,FALSE,Total execution time (end-to-end execution) in seconds
+EXPERIMENT_RAW,,VL_INTER_TASK_EXECUTION_TIME,DOUBLE PRECISION,FALSE,FALSE,Parallel task execution time in seconds
+EXPERIMENT_RAW,,VL_INTRA_TASK_EXECUTION_TIME_FULL_FUNC,DOUBLE PRECISION,FALSE,FALSE,User code execution time in seconds
+EXPERIMENT_RAW,,VL_INTRA_TASK_EXECUTION_TIME_DEVICE_FUNC,DOUBLE PRECISION,FALSE,FALSE,Parallel fraction execution time in seconds
+EXPERIMENT_RAW,,VL_COMMUNICATION_TIME_1,DOUBLE PRECISION,FALSE,FALSE,CPU-GPU communication in seconds
+EXPERIMENT_RAW,,VL_COMMUNICATION_TIME_2,DOUBLE PRECISION,FALSE,FALSE,GPU-CPU communication in seconds
+EXPERIMENT_RAW,,VL_ADDITIONAL_TIME_1,DOUBLE PRECISION,FALSE,FALSE,Serial fraction execution time in seconds before parallel fraction execution
+EXPERIMENT_RAW,,VL_ADDITIONAL_TIME_2,DOUBLE PRECISION,FALSE,FALSE,Serial fraction execution time in seconds after parallel fraction execution
+EXPERIMENT_RAW,,DT_PROCESSING,TIMESTAMP,FALSE,FALSE,Date and time of the execution

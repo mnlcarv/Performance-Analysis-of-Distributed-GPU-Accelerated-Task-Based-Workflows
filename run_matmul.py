@@ -39,7 +39,7 @@ if __name__ == '__main__':
             compss_barrier()
             start_total_execution_time = time.perf_counter()
             # Run Matmul using dislib
-            result = ds.matmul(x, x, transpose_a, transpose_b, id_device=id_device, id_parameter=0, nr_algorithm_iteration=0)
+            result = ds.matmul(x, x, transpose_a, transpose_b, id_device=id_device, id_parameter=0, nr_algorithm_iteration=i)
             compss_barrier()
             end_total_execution_time = time.perf_counter()
 
@@ -58,4 +58,4 @@ if __name__ == '__main__':
         else:
 
             # Run Matmul using dislib
-            result = ds.matmul(x, x, transpose_a, transpose_b, id_device=id_device, id_parameter=0, nr_algorithm_iteration=0)
+            result = ds.matmul(x, x, transpose_a, transpose_b, id_device=id_device, id_parameter=0, nr_algorithm_iteration=i)
