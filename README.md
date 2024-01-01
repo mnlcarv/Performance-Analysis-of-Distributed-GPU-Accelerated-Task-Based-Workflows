@@ -48,4 +48,4 @@ The queries used to extract the data plotted in the charts are available at [/ex
 
 
 # Supplementary experiments
-The results obtained in the supplementary experiments (i.e. additional algorithm (not belonging to dislib library) and larger, skewed, and sparse datasets) are available at [/experiments/scripts/results/supplementary_experiments/](https://github.com/mnlcarv/Performance-Analysis-of-Distributed-GPU-Accelerated-Task-Based-Workflows/blob/main/experiments/scripts/results/supplementary_experiments/).
+The results obtained in the supplementary experiments (i.e. additional algorithm (not belonging to dislib library) and larger, skewed, and sparse datasets) are available at [/experiments/results/supplementary_experiments/](https://github.com/mnlcarv/Performance-Analysis-of-Distributed-GPU-Accelerated-Task-Based-Workflows/blob/main/experiments/results/supplementary_experiments/).
