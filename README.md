@@ -6,7 +6,7 @@ The sample algorithms (```run_matmul.py```, ```run_kmeans.py```, and ```run_matm
 ```
 runcompss run_matmul.py
 ```
-After running the example, the raw execution time logs are saved to a csv file located at ```/experiments/results/tb_experiments_raw.csv```. Note that our scripts can be easily to extract the execution times from other algorithms.
+After running the example, the raw execution time logs are saved to a csv file located at ```/experiments/results/tb_experiments_raw.csv```. Note that our scripts can be easily adapted to extract the execution times from other algorithms.
 
 ### Observations
 1. In a cluster, the algorithms are executed via batch jobs. A job can be submitted using the ```enqueue_compss``` command. For more details, please check the official documentation of COMPSs [here](https://compss-doc.readthedocs.io/en/stable/index.html).
