@@ -1,4 +1,5 @@
 "id_dataset","ds_dataset","vl_dataset_memory_size","ds_data_type","vl_data_type_memory_size","vl_dataset_dimension","vl_dataset_row_dimension","vl_dataset_column_dimension","nr_random_state","vl_data_sparsity","vl_data_skewness"
+"3","S_2GB_1","2048000000","FLOAT64","8","256000000","16000","16000","170","0","0"
 "4","S_8GB_1","8192000000","FLOAT64","8","1024000000","32000","32000","170","0","0"
 "5","S_32GB_1","32768000000","FLOAT64","8","4096000000","64000","64000","170","0","0"
 "8","S_2GB_2","2048000000","FLOAT64","8","256000000","16000","16000","170","1","0"
