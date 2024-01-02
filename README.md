@@ -15,7 +15,9 @@ After running the example, the raw execution time logs are saved to a csv file l
 runcompss --tracing=true run_matmul.py
 ```
 The execution traces generated in COMPSs with [Extrae](https://tools.bsc.es/extrae) can be visualized using [Paraver](https://www.bsc.es/discover-bsc/organisation/scientific-structure/performance-tools/paraver). More information about traces in COMPSs and how to visualize them are available at the links below:
+
 [COMPSs Applications Tracing](https://compss-doc.readthedocs.io/en/stable/Sections/05_Tools/03_Tracing/01_Apps_tracing.html)
+
 [Trace Visualization in Paraver](https://compss-doc.readthedocs.io/en/stable/Sections/05_Tools/03_Tracing/02_Visualization.html?highlight=paraver)
 
 ## Dependencies
@@ -37,15 +39,15 @@ The execution traces generated in COMPSs with [Extrae](https://tools.bsc.es/extr
 # Data resources
 We stored parameter data in eight dimension tables (DEVICE, ALGORITHM, FUNCTION, CONFIGURATION, RESOURCE, DATASET, PARAMETER_TYPE, and PARAMETER) and result data in a fact table (EXPERIMENT_RAW). We created a schema with these nine tables for each algorithm tested. The data resources are available in the path [/data/](https://github.com/mnlcarv/Performance-Analysis-of-Distributed-GPU-Accelerated-Task-Based-Workflows/blob/main/data/). 
 
-Data (de-)serialization times (columns 'Deserializing object' and 'Serializing object' in [Paraver's histogram](https://compss-doc.readthedocs.io/en/stable/Sections/05_Tools/03_Tracing/04_Analysis.html)) were stored in CSV files and they are available at [/data/paraver/](https://github.com/mnlcarv/Performance-Analysis-of-Distributed-GPU-Accelerated-Task-Based-Workflows/blob/main/data/paraver/): 
+Data (de-)serialization times (columns 'Deserializing object' and 'Serializing object' in [Paraver's histogram](https://compss-doc.readthedocs.io/en/stable/Sections/05_Tools/03_Tracing/04_Analysis.html)) were stored in CSV files and they are available at [/data/paraver/](https://github.com/mnlcarv/Performance-Analysis-of-Distributed-GPU-Accelerated-Task-Based-Workflows/blob/main/data/paraver/).
 
 ## Extension to other setups
 We ran our experiments using the resources available at the [Minotauro](https://bsc.es/supportkc/docs/Minotauro/overview/) cluster. To extend our methodology to other setups, we encourage users to use the same database schema design to store their data (i.e. resources, algorithms, datasets, etc). The SQL ```CREATE``` scripts for the tables as well as their data dictionary are available at [/experiments/scripts/create_tables/](https://github.com/mnlcarv/Performance-Analysis-of-Distributed-GPU-Accelerated-Task-Based-Workflows/blob/main/experiments/scripts/create_tables/).
 
 
-# Reproducibility
-The queries used to extract the data plotted in the charts are available at [/experiments/scripts/data_charts/](https://github.com/mnlcarv/Performance-Analysis-of-Distributed-GPU-Accelerated-Task-Based-Workflows/blob/main/experiments/scripts/data_charts/).
-
-
 # Supplementary experiments
 The results obtained in the supplementary experiments (i.e. additional algorithm (not belonging to dislib library) and larger, skewed, and sparse datasets) are available at [/experiments/results/supplementary_experiments/](https://github.com/mnlcarv/Performance-Analysis-of-Distributed-GPU-Accelerated-Task-Based-Workflows/blob/main/experiments/results/supplementary_experiments/).
+
+
+# Reproducibility
+The queries used to extract the data plotted in the charts are available at [/experiments/scripts/data_charts/](https://github.com/mnlcarv/Performance-Analysis-of-Distributed-GPU-Accelerated-Task-Based-Workflows/blob/main/experiments/scripts/data_charts/). To reproduce our results, load the data resources (available in the path [/data/](https://github.com/mnlcarv/Performance-Analysis-of-Distributed-GPU-Accelerated-Task-Based-Workflows/blob/main/data/)) into a database and run our queries.
