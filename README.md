@@ -1,15 +1,15 @@
 # Introduction
-This is the public repository of the paper "Performance Analysis of Distributed GPU-Accelerated Task-Based Workflows", which includes datasets, experimental results, and source code to extract different execution times from the dislib implementations of Matmul and K-means, as well as the COMPSs implementation of Matmul FMA.
+This is the public repository of the paper "Performance Analysis of Distributed GPU-Accelerated Task-Based Workflows", which includes datasets, experimental results, and source code to extract different execution times from analytics algorithms.
 
 ## How to run
-The demo applications (```run_matmul.py``` and ```run_kmeans.py```) are executed with the ```runcompss``` command, as shown in the example below:
+The sample algorithms (```run_matmul.py```, ```run_kmeans.py```, and ```run_matmul_fma.py```) are executed with the ```runcompss``` command, as shown in the example below:
 ```
 runcompss run_matmul.py
 ```
-After running the example, the raw execution time logs are saved to a csv file located at ```/experiments/results/tb_experiments_raw.csv```.
+After running the example, the raw execution time logs are saved to a csv file located at ```/experiments/results/tb_experiments_raw.csv```. Note that our scripts can be easily to extract the execution times from other algorithms.
 
 ### Observations
-1. In a cluster, the applications are submitted via batch jobs. A job can be submitted using the ```enqueue_compss``` command. For more details, please check the official documentation of COMPSs [here](https://compss-doc.readthedocs.io/en/stable/index.html).
+1. In a cluster, the algorithms are executed via batch jobs. A job can be submitted using the ```enqueue_compss``` command. For more details, please check the official documentation of COMPSs [here](https://compss-doc.readthedocs.io/en/stable/index.html).
 2. To extract data (de-)serialization times, it is necessary to activate tracing in COMPSs by including the extra argument ```--tracing=true``` to the execution command, as follows:
 ```
 runcompss --tracing=true run_matmul.py
