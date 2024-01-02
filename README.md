@@ -1,5 +1,5 @@
 # Introduction
-This is the public repository of the paper "Performance Analysis of Distributed GPU-Accelerated Task-Based Workflows", which includes the source code to extract different execution times from the dislib implementations of Matmul and K-means, as well as the COMPSs implementation of Matmul FMA.
+This is the public repository of the paper "Performance Analysis of Distributed GPU-Accelerated Task-Based Workflows", which includes datasets, experimental results, and source code to extract different execution times from the dislib implementations of Matmul and K-means, as well as the COMPSs implementation of Matmul FMA.
 
 ## How to run
 The demo applications (```run_matmul.py``` and ```run_kmeans.py```) are executed with the ```runcompss``` command, as shown in the example below:
