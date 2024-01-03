@@ -50,11 +50,11 @@ The queries used to extract the data plotted in each chart in our experiments ar
 ## Extension to other setups
 We ran our experiments using the resources available at the [Minotauro](https://bsc.es/supportkc/docs/Minotauro/overview/) cluster. To extend our methodology to other setups, follow the steps below:
 
-1. Make sure that the execution environment has the required dependencies. In our case, the distributed system COMPSs and additional libraries (dislib, Python, NumPy and CuPy) were needed to run the sample algorithms, but adapt this step according to the distributed system and libraries used.
+1. Make sure that the execution environment has the required dependencies. In our case, the distributed system COMPSs and additional libraries (dislib, Python, NumPy, and CuPy) were needed to run the sample algorithms, but adapt this step according to the distributed system and libraries used.
 
-2. Select an algorithm to study and identify the GPU-accelerated task(s) available on it. Make sure that the algorithm has two versions of the same task(s) (i.e. a version for CPUs and another for GPUs) to perform comparisons between CPUs and GPU.
+2. Select an algorithm to study and identify the GPU-accelerated task(s) available on it. Make sure that the algorithm has two versions of the same task(s) (i.e. a version for CPUs and another for GPUs) to perform comparisons between CPUs and GPUs.
 
-3. Adapt the algorithm source code to extract the evaluated metrics presented (see Section 4.2 in the paper)*. Because parallel applications run asynchronously compared to sequential applications**, measuring the execution times in such applications requires synchronization barriers to ensure that all operations in a task are finished. For this reason, we prepared three execution modes for each processor type (CPU or GPU) controlled by the flag ```id_device``` as follows***:
+3. Adapt the algorithm source code to extract the evaluated metrics presented (see Section 4.2 in the paper)<sup>†</sup>. Because parallel applications run asynchronously compared to sequential applications<sup>††</sup>, measuring the execution times in such applications requires synchronization barriers to ensure that all operations in a task are finished. For this reason, we prepared three execution modes for each processor type (CPU or GPU) controlled by the flag ```id_device``` as follows<sup>†††</sup>:
 
 - ```id_device = 1``` or ```id_device = 2```: execution with COMPSs synchronizations to extract total execution times (end-to-end execution) for CPUs and GPUs, respectively.
 
@@ -62,13 +62,15 @@ We ran our experiments using the resources available at the [Minotauro](https://
 
 - ```id_device = 5 or id_device = 6```: execution with COMPSs synchronizations to extract parallel tasks execution times for CPUs and GPUs, respectively.
 
-*Data deserialization and serialization times can be obtained with profiling tools (e.g. [Paraver](https://www.bsc.es/discover-bsc/organisation/scientific-structure/performance-tools/paraver)).
+<sup>†</sup>Data deserialization and serialization times can be obtained with profiling tools (e.g. [Paraver](https://www.bsc.es/discover-bsc/organisation/scientific-structure/performance-tools/paraver)).
 
-**More information about synchronization in COMPSs and CuPY are available in the links below:
+<sup>††</sup>More information about synchronization in COMPSs and CuPY are available in the links below:
+
 [COMPSs synchronization](https://compss-doc.readthedocs.io/en/stable/Sections/02_App_Development/02_Python/01_2_Synchronization/01_API.html)
+
 [CuPy synchronization](https://docs.cupy.dev/en/stable/user_guide/performance.html)
 
-***Except for the execution mode ```id_device = 4```, which requires [CUDA events](https://docs.cupy.dev/en/stable/user_guide/performance.html), all the execution times are extracted using [Python's performance counter](https://docs.python.org/3/library/time.html).
+<sup>†††</sup>Except for the execution mode ```id_device = 4```, which requires [CUDA events](https://docs.cupy.dev/en/stable/user_guide/performance.html), all the execution times are extracted using [Python's performance counter](https://docs.python.org/3/library/time.html).
 
 4. Populate the dimension tables (```DEVICE```, ```ALGORITHM```, ```FUNCTION```, ```CONFIGURATION```, ```RESOURCE```, ```DATASET```, ```PARAMETER_TYPE```, and ```PARAMETER```) according to the available execution setup. Note that each row in the ```PARAMETER``` table must contain a unique set of execution parameters.
 
