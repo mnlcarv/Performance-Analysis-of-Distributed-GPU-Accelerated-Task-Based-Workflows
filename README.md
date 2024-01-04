@@ -86,7 +86,7 @@ We encourage users to use the same database schema design to store their results
 
 
 # Discussion about the generalizability and supplementary experiments
-We now provide details about additional experiments we provided related to the generalizability of our method. Specifically, we report about supplementary experiments about larger datasets, skewed and spart datasets and an additional algorithm to the two used in the paper.
+We now provide details about additional experiments we provided related to the generalizability of our method. Specifically, we report about supplementary experiments about larger datasets, skewed and sparse datasets and an additional algorithm to the two used in the paper.
 
 The supplementary experiments were conducted using the same analysis method as in the experiments reported in the paper. The execution parameters and results obtained are reported at [/experiments/results/supplementary_experiments/Report_Supplementary_Experiments.pdf](https://github.com/mnlcarv/Performance-Analysis-of-Distributed-GPU-Accelerated-Task-Based-Workflows/blob/main/experiments/results/supplementary_experiments/Report_Supplementary_Experiments.pdf). In particular, we perfomed the following experiments:
 
