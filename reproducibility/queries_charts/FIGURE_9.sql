@@ -567,7 +567,7 @@ T_CPU.VL_BLOCK_MEMORY_SIZE_PERCENT_DATASET;
 
 
 
--- #### FIGURE 9(b). The effects of CPU-GPU communication and serial fraction processing on K-means for different data skewness ####
+-- #### FIGURE 9(b). The effects of CPU-GPU communication and serial fraction processing on K-means and Matmul for different data skewness ####
 WITH T_CPU AS (
 SELECT
 	Y.VL_TOTAL_EXECUTION_TIME,
@@ -1143,13 +1143,20 @@ SELECT
 									AND T_CPU.VL_BLOCK_ROW_DIMENSION = T_GPU.VL_BLOCK_ROW_DIMENSION
 									AND T_CPU.VL_BLOCK_COLUMN_DIMENSION = T_GPU.VL_BLOCK_COLUMN_DIMENSION)
 WHERE
--- START FILTERS FOR FIGURE 9(b)
-	T_CPU.ds_algorithm='KMEANS'
+-- START FILTERS FOR FIGURE 9(b) - PART 1 - MATMUL
+	T_CPU.ds_algorithm='MATMUL_DISLIB'
 	AND T_CPU.nr_iterations = 5
-	AND T_CPU.ds_dataset in ('S_1GB_1','S_1GB_3')
-	AND T_CPU.ds_parameter_type = 'VAR_GRID_ROW_5'
-	AND T_CPU.id_resource = 18
--- END FILTERS FOR FIGURE 9(b)
+	AND T_CPU.ds_dataset in ('S_2GB_1','S_2GB_3')
+	AND T_CPU.ds_parameter_type = 'VAR_GRID_SHAPE_MATMUL_1'
+	AND T_CPU.id_resource = 1
+-- END FILTERS FOR FIGURE 9(b) - PART 1 MATMUL
+-- START FILTERS FOR FIGURE 9(b) - PART 2 - K-MEANS
+	--T_CPU.ds_algorithm='KMEANS'
+	--AND T_CPU.nr_iterations = 5
+	--AND T_CPU.ds_dataset in ('S_1GB_1','S_1GB_3')
+	--AND T_CPU.ds_parameter_type = 'VAR_GRID_ROW_5'
+	--AND T_CPU.id_resource = 18
+-- END FILTERS FOR FIGURE 9(b) - PART 2 - K-MEANS
 	ORDER BY
 	T_CPU.DS_DATASET,
 	T_CPU.VL_BLOCK_MEMORY_SIZE_PERCENT_DATASET;
