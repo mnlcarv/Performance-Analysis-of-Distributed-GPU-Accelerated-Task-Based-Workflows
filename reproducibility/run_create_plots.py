@@ -22,9 +22,9 @@ def main():
 
     for query in queries:
         
-        if (query == 'query_7.sql'):
+        if (query == 'query_1.sql'):
 
-            # Reading crossing data from csv file: database (query_7.sql) with paraver (raw_data/combined_data/paraver_metrics) 
+            # Reading crossing data from csv file: database (query_1.sql) with paraver (raw_data/combined_data/paraver_metrics) 
             dst_combined_data = path_csv_file+"tb_cross_data_paraver.csv"
 
             # Reading "tb_experiments_motivation" csv table
@@ -35,16 +35,16 @@ def main():
 
             generate_graph(df, dst_path_figs, query)
         
-        elif (query == 'query_8.sql'):
+        elif (query == 'query_2.sql'):
 
             # Open connection to the database
             schema='schema_matmul'
             cur, conn = open_connection(schema)
 
             # Read query
-            sql_file_pathA = "/database/query_8A.sql"
+            sql_file_pathA = "/database/query_3.sql"
             sql_queryA = read_sql_file(sql_file_pathA)
-            sql_file_pathB = "/database/query_8B.sql"
+            sql_file_pathB = "/database/query_4.sql"
             sql_queryB = read_sql_file(sql_file_pathB)
 
             # Get dataframe from query
@@ -57,7 +57,7 @@ def main():
             # Close connection to the database
             close_connection(cur, conn)
 
-        elif (query == 'query_9A.sql'):
+        elif (query == 'query_5.sql'):
 
             # Open connection to the database
             schema='schema_kmeans'
@@ -75,7 +75,7 @@ def main():
             # Close connection to the database
             close_connection(cur, conn)
 
-        elif (query == 'query_9B1.sql'):
+        elif (query == 'query_6.sql'):
 
             # Open connection to the database
             schema='schema_matmul'
@@ -93,7 +93,7 @@ def main():
             # Close connection to the database
             close_connection(cur, conn)
 
-        elif (query == 'query_9B2.sql'):
+        elif (query == 'query_7.sql'):
             
             # Open connection to the database
             schema='schema_kmeans'
@@ -111,7 +111,7 @@ def main():
             # Close connection to the database
             close_connection(cur, conn)
 
-        elif (query == 'query_10A.sql'):
+        elif (query == 'query_8.sql'):
             
             # Open connection to the database
             schema='schema_matmul'
@@ -130,7 +130,7 @@ def main():
             close_connection(cur, conn)
 
 
-        elif (query == 'query_10B.sql'):
+        elif (query == 'query_9.sql'):
             
             # Open connection to the database
             schema='schema_kmeans'
@@ -148,9 +148,9 @@ def main():
             # Close connection to the database
             close_connection(cur, conn)
 
-        elif (query == 'query_11.sql'):
+        elif (query == 'query_10.sql'):
             
-            # Reading data combined from the results of queries in query_11.sql
+            # Reading data combined from the results of queries in query_10.sql
             dst_combined_data = path_csv_file+"tb_correlation.csv"
 
             # Reading "tb_experiments_motivation" csv table
@@ -162,7 +162,7 @@ def main():
             generate_graph(df, dst_path_figs, query)
             
 
-        elif (query == 'query_12.sql'):
+        elif (query == 'query_11.sql'):
             
             # Open connection to the database
             schema='schema_matmul_fma'
@@ -180,7 +180,7 @@ def main():
             # Close connection to the database
             close_connection(cur, conn)
 
-        elif (query == 'query_13.sql'):
+        elif (query == 'query_12.sql'):
             
             # Open connection to the database
             schema='schema_matmul'
@@ -207,7 +207,7 @@ def main():
 def generate_graph(df, dst_path_figs, query):
 
 
-    if query == 'query_7.sql':
+    if query == 'query_1.sql':
         
         matplotlib.rcParams.update({'font.size': 18})
 
@@ -301,7 +301,7 @@ def generate_graph(df, dst_path_figs, query):
         # Save plots
         plt.savefig(dst_path_figs+'fig_'+str(query)+'.png',bbox_inches='tight',dpi=100)
     
-    elif query == 'query_8.sql':
+    elif query == 'query_2.sql':
         
         # Filtering query
         df_filtered = df[
@@ -387,7 +387,7 @@ def generate_graph(df, dst_path_figs, query):
         plt.savefig(dst_path_figs+'fig_'+str(query)+'.png',bbox_inches='tight',dpi=100)
 
 
-    elif query == 'query_9A.sql':
+    elif query == 'query_5.sql':
         
         # Filtering query
         df_filtered = df[
@@ -524,7 +524,7 @@ def generate_graph(df, dst_path_figs, query):
         plt.savefig(dst_path_figs+'fig_'+str(query)+'.png',bbox_inches='tight',dpi=100)
 
 
-    elif query == 'query_9B1.sql':
+    elif query == 'query_6.sql':
         
         # Filter query
         df_filtered = df[
@@ -578,7 +578,7 @@ def generate_graph(df, dst_path_figs, query):
         plt.savefig(dst_path_figs+'fig_'+str(query)+'.png',bbox_inches='tight',dpi=100)
 
     
-    elif (query == 'query_9B2.sql'):
+    elif (query == 'query_7.sql'):
         
         # Filter query
         df_filtered = df[
@@ -631,7 +631,7 @@ def generate_graph(df, dst_path_figs, query):
         plt.savefig(dst_path_figs+'fig_'+str(query)+'.png',bbox_inches='tight',dpi=100)
     
     
-    elif (query == 'query_10A.sql'):
+    elif (query == 'query_8.sql'):
 
         # Filter query
         df_filtered = df[
@@ -733,7 +733,7 @@ def generate_graph(df, dst_path_figs, query):
         plt.savefig(dst_path_figs+'fig_'+str(query)+'.png',bbox_inches='tight',dpi=100)
 
     
-    elif (query == 'query_10B.sql'):
+    elif (query == 'query_9.sql'):
         
         # Filter query
         df_filtered = df[
@@ -833,7 +833,7 @@ def generate_graph(df, dst_path_figs, query):
         plt.savefig(dst_path_figs+'fig_'+str(query)+'.png',bbox_inches='tight',dpi=100)
 
 
-    elif (query == 'query_11.sql'):
+    elif (query == 'query_10.sql'):
         
         # PRE-PROCESSING (NORMALIZING DATA)
         min_value = df_filtered["Block size"].min()
@@ -889,7 +889,7 @@ def generate_graph(df, dst_path_figs, query):
         plt.savefig(dst_path_figs+'fig_'+str(query)+'.png',bbox_inches='tight',dpi=100)
 
 
-    elif (query == 'query_12.sql'):
+    elif (query == 'query_11.sql'):
         
         # Filter query
         df_filtered = df[
@@ -951,7 +951,7 @@ def generate_graph(df, dst_path_figs, query):
         # Save plots
         plt.savefig(dst_path_figs+'fig_'+str(query)+'.png',bbox_inches='tight',dpi=100)
 
-    elif (query == 'query_13.sql'):
+    elif (query == 'query_12.sql'):
         
         # Filter query
         df_filtered = df[
@@ -1103,7 +1103,7 @@ def get_files_with_prefix(path, prefix):
     items = os.listdir(path)
 
     # Filter out files with the specified prefix
-    file_names = [item for item in items if os.path.isfile(os.path.join(path, item)) and item.startswith(prefix) and item != 'query_8A.sql' and item != 'query_8B.sql']
+    file_names = [item for item in items if os.path.isfile(os.path.join(path, item)) and item.startswith(prefix) and item != 'query_3.sql' and item != 'query_4.sql']
 
     return file_names
 

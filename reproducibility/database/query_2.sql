@@ -1,0 +1,1 @@
+SELECT 1--query splitted into two (see query_3 and query_4)
