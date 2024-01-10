@@ -202,7 +202,7 @@
    
 -----------------------------------------------------------------------------
 
-The files in the "/dislib" folder are from the "gpu-support" branch of dislib project
+The files in the "/analysis/algorithms/dislib" folder are from the "gpu-support" branch of dislib project, adapted to monitor execution times in different execution modes
 (repository available at: https://github.com/bsc-wdc/dislib/tree/gpu-support), which
 is available under a "Apache 2.0" license.
 The following files have been changed to log execution times:

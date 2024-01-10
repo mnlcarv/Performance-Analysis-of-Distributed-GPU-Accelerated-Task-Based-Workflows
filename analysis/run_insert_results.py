@@ -4,15 +4,15 @@ import psycopg2
 import psycopg2.extras as extras
 import pandas as pd
 import math
-from config import open_connection, close_connection
+from db_config.config import open_connection, close_connection
 
 def main():
 
-    # Path of the "tb_experiments_raw" table - CSV file
-    src_path_experiments = "../../../experiments/results/tb_experiments_raw.csv"
+    # Path of the "tb_experiments_raw" table - CSV file (raw log metrics)
+    src_path_experiments = "/results/tb_experiments_raw.csv"
 
-    # Path of the "tb_experiments" table - CSV file
-    dst_path_experiments = "../../../experiments/results/tb_experiments.csv"
+    # Path of the "tb_experiments" table - CSV file (prepared metrics)
+    dst_path_experiments = "/results/tb_experiments.csv"
 
     # Reading "tb_experiments_raw" table
     param_file = os.path.join(src_path_experiments)
@@ -65,7 +65,8 @@ def main():
     cols = ','.join(list(df_experiments.columns))
 
     # Open connection to the database
-    cur, conn = open_connection()
+    schema='schema_kmeans'
+    cur, conn = open_connection(schema)
 
     # Set sql query - on conflict with the database values, do nothing
     sql_query = "INSERT INTO EXPERIMENT_RAW(%s) VALUES %%s ON CONFLICT (%s) DO NOTHING" % (cols,cols)
