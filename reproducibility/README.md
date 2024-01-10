@@ -4,7 +4,7 @@ Our results are stored in a relational database (Postgres). To reproduce our res
 
 1. Insert your database connection details in the [database.ini](https://github.com/mnlcarv/Performance-Analysis-of-Distributed-GPU-Accelerated-Task-Based-Workflows/blob/main/reproducibility/db_config/database.ini) file
 
-2. Save the stored procedures [create_tables.sql](https://github.com/mnlcarv/Performance-Analysis-of-Distributed-GPU-Accelerated-Task-Based-Workflows/blob/main/reproducibility/database/create_tables/create_tables.sql) and [load_tables.sql](https://github.com/mnlcarv/Performance-Analysis-of-Distributed-GPU-Accelerated-Task-Based-Workflows/blob/main/reproducibility/database/create_tables/load_tables.sql) in your database
+2. Save the stored procedures [create_tables.sql](https://github.com/mnlcarv/Performance-Analysis-of-Distributed-GPU-Accelerated-Task-Based-Workflows/blob/main/reproducibility/database/create_tables.sql) and [load_tables.sql](https://github.com/mnlcarv/Performance-Analysis-of-Distributed-GPU-Accelerated-Task-Based-Workflows/blob/main/reproducibility/database/load_tables.sql) in your database
 
 3. The queries used for each experiment are available in the folder  [/database/](https://github.com/mnlcarv/Performance-Analysis-of-Distributed-GPU-Accelerated-Task-Based-Workflows/blob/main/reproducibility/database/). The queries and their description are described as follows:
 
