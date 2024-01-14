@@ -218,7 +218,6 @@
                                 INNER JOIN DATASET D ON (B.ID_DATASET = D.ID_DATASET)
                                 WHERE
                                 A.NR_ALGORITHM_ITERATION <> 0
-                                --AND DATE_TRUNC('day', A.DT_PROCESSING) < TO_DATE('15/11/2022', 'dd/mm/yyyy')
                             ) X
                             GROUP BY
                             X.ID_PARAMETER,

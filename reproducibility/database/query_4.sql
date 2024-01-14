@@ -166,7 +166,7 @@ WITH T_CPU AS (
                                             AND A.NR_ALGORITHM_ITERATION <> 0
                                         ) X
 										WHERE
-										X.DS_FUNCTION = 'MATMUL_FUNC'
+										X.DS_FUNCTION = 'ADD_FUNC'
                                         GROUP BY
                                         X.ID_PARAMETER,
                                         X.CD_PARAMETER,
@@ -382,7 +382,7 @@ WITH T_CPU AS (
                                             AND A.NR_ALGORITHM_ITERATION <> 0
                                         ) X
 										WHERE
-										X.DS_FUNCTION = 'MATMUL_FUNC'
+										X.DS_FUNCTION = 'ADD_FUNC'
                                         GROUP BY
                                         X.ID_PARAMETER,
                                         X.CD_PARAMETER,

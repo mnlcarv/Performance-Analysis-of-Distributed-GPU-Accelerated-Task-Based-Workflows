@@ -1,3 +1,4 @@
+import csv
 import os
 import pandas as pd
 import matplotlib.pyplot as plt
@@ -5,25 +6,32 @@ import seaborn as sns
 import numpy as np
 import matplotlib
 from db_config.config import open_connection, close_connection
+from psycopg2 import sql
 
 
 # Main function to plot charts (usage python create_plots.py)
 def main():
 
+    print('\n\nSTART PREPARING DATABASE ##########')
+
     # Setup database: create schemas, create tables, load tables
     setup_database()
 
-    path_queries = "/database/"
-    path_csv_file = "/raw_data/combined_data/" # FOR CHARTS THAT DEPEND ON CROSSING DATA WITH PARAVER
+    print('\n\n########## FINISH PREPARING DATABASE ##########')
+
+
+    print('\n\n########## START PLOTTING FIGURES ##########')
+
+    path_queries = "database/"
+    path_csv_file = "raw_data/combined_data/" # FOR CHARTS THAT DEPEND ON CROSSING DATA WITH PARAVER
 
     queries = get_files_with_prefix(path_queries,'query')
 
-    dst_path_figs = '/figures/'
+    dst_path_figs = 'figures/'
 
     for query in queries:
         
         if (query == 'query_1.sql'):
-
             # Reading crossing data from csv file: database (query_1.sql) with paraver (raw_data/combined_data/paraver_metrics) 
             dst_combined_data = path_csv_file+"tb_cross_data_paraver.csv"
 
@@ -36,15 +44,17 @@ def main():
             generate_graph(df, dst_path_figs, query)
         
         elif (query == 'query_2.sql'):
-
             # Open connection to the database
             schema='schema_matmul'
             cur, conn = open_connection(schema)
 
+            sql_create_schema = "SET search_path = "+schema+";"
+            cur.execute(sql_create_schema)
+
             # Read query
-            sql_file_pathA = "/database/query_3.sql"
+            sql_file_pathA = path_queries+"/query_3.sql"
             sql_queryA = read_sql_file(sql_file_pathA)
-            sql_file_pathB = "/database/query_4.sql"
+            sql_file_pathB = path_queries+"/query_4.sql"
             sql_queryB = read_sql_file(sql_file_pathB)
 
             # Get dataframe from query
@@ -58,13 +68,15 @@ def main():
             close_connection(cur, conn)
 
         elif (query == 'query_5.sql'):
-
             # Open connection to the database
             schema='schema_kmeans'
             cur, conn = open_connection(schema)
+
+            sql_create_schema = "SET search_path = "+schema+";"
+            cur.execute(sql_create_schema)
             
             # Read query
-            sql_file_path = "/database/"+query
+            sql_file_path = path_queries+query
             sql_query = read_sql_file(sql_file_path)
 
             # Get dataframe from query
@@ -76,13 +88,15 @@ def main():
             close_connection(cur, conn)
 
         elif (query == 'query_6.sql'):
-
             # Open connection to the database
             schema='schema_matmul'
             cur, conn = open_connection(schema)
+
+            sql_create_schema = "SET search_path = "+schema+";"
+            cur.execute(sql_create_schema)
            
             # Read query
-            sql_file_path = "/database/"+query
+            sql_file_path = path_queries+query
             sql_query = read_sql_file(sql_file_path)
 
             # Get dataframe from query
@@ -94,13 +108,15 @@ def main():
             close_connection(cur, conn)
 
         elif (query == 'query_7.sql'):
-            
             # Open connection to the database
             schema='schema_kmeans'
             cur, conn = open_connection(schema)
 
+            sql_create_schema = "SET search_path = "+schema+";"
+            cur.execute(sql_create_schema)
+
             # Read query
-            sql_file_path = "/database/"+query
+            sql_file_path = path_queries+query
             sql_query = read_sql_file(sql_file_path)
 
             # Get dataframe from query
@@ -112,13 +128,15 @@ def main():
             close_connection(cur, conn)
 
         elif (query == 'query_8.sql'):
-            
             # Open connection to the database
             schema='schema_matmul'
             cur, conn = open_connection(schema)
 
+            sql_create_schema = "SET search_path = "+schema+";"
+            cur.execute(sql_create_schema)
+
             # Read query
-            sql_file_path = "/database/"+query
+            sql_file_path = path_queries+query
             sql_query = read_sql_file(sql_file_path)
 
             # Get dataframe from query
@@ -131,13 +149,15 @@ def main():
 
 
         elif (query == 'query_9.sql'):
-            
             # Open connection to the database
             schema='schema_kmeans'
             cur, conn = open_connection(schema)
 
+            sql_create_schema = "SET search_path = "+schema+";"
+            cur.execute(sql_create_schema)
+
             # Read query
-            sql_file_path = "/database/"+query
+            sql_file_path = path_queries+query
             sql_query = read_sql_file(sql_file_path)
 
             # Get dataframe from query
@@ -149,7 +169,6 @@ def main():
             close_connection(cur, conn)
 
         elif (query == 'query_10.sql'):
-            
             # Reading data combined from the results of queries in query_10.sql
             dst_combined_data = path_csv_file+"tb_correlation.csv"
 
@@ -163,13 +182,15 @@ def main():
             
 
         elif (query == 'query_11.sql'):
-            
             # Open connection to the database
             schema='schema_matmul_fma'
             cur, conn = open_connection(schema)
 
+            sql_create_schema = "SET search_path = "+schema+";"
+            cur.execute(sql_create_schema)
+
             # Read query
-            sql_file_path = "/database/"+query
+            sql_file_path = path_queries+query
             sql_query = read_sql_file(sql_file_path)
 
             # Get dataframe from query
@@ -181,13 +202,15 @@ def main():
             close_connection(cur, conn)
 
         elif (query == 'query_12.sql'):
-            
             # Open connection to the database
             schema='schema_matmul'
             cur, conn = open_connection(schema)
 
+            sql_create_schema = "SET search_path = "+schema+";"
+            cur.execute(sql_create_schema)
+
             # Read query
-            sql_file_path = "/database/"+query
+            sql_file_path = path_queries+query
             sql_query = read_sql_file(sql_file_path)
 
             # Get dataframe from query
@@ -200,16 +223,21 @@ def main():
 
         else:
             print('error: invalid query')
+    
+    print('\n\n###############')
+    print('Figures generated successfully! Check folder figures/')
+    print('###############')
 
-
+    print('\n\n ########## END PLOTTING FIGURES ##########')
 
 
 def generate_graph(df, dst_path_figs, query):
 
 
     if query == 'query_1.sql':
-        
         matplotlib.rcParams.update({'font.size': 18})
+
+        df_filtered = df
 
         # Matmul Speedup
         # 8 GB 
@@ -302,11 +330,11 @@ def generate_graph(df, dst_path_figs, query):
         plt.savefig(dst_path_figs+'fig_'+str(query)+'.png',bbox_inches='tight',dpi=100)
     
     elif query == 'query_2.sql':
-        
         # Filtering query
         df_filtered = df[
                         (df["ds_resource"] == "MINOTAURO_9_NODES_1_CORE")
-                        & (df["ds_dataset"].isin(["S_2GB_1","S_2GB_3"]))
+                        & (df["ds_dataset"] == "S_8GB_1")
+                        # & (df["ds_dataset"].isin(["S_2GB_1","S_2GB_3"]))
                         & (df["ds_parameter_type"] == "VAR_GRID_SHAPE_MATMUL_1")
                         ]
         
@@ -330,7 +358,6 @@ def generate_graph(df, dst_path_figs, query):
         # Speedups
         df1 = df_filtered_left_top[["vl_block_memory_size","vl_block_memory_size_mb","speedup_gpu_intra_task_execution_time_full_func"]].sort_values(by=["vl_block_memory_size"], ascending=[True])
         df2 = df_filtered_right_top[["vl_block_memory_size","vl_block_memory_size_mb","speedup_gpu_intra_task_execution_time_full_func"]].sort_values(by=["vl_block_memory_size"], ascending=[True])
-        print(df_filtered_right_top)
         # Times
         df3 = df_filtered_left_bottom[["vl_block_memory_size","vl_block_memory_size_mb","vl_intra_task_execution_time_device_func_cpu","vl_additional_time_cpu","vl_communication_time_cpu","vl_intra_task_execution_time_device_func_gpu","vl_additional_time_gpu","vl_communication_time_gpu"]].sort_values(by=["vl_block_memory_size"], ascending=[True])
         df4 = df_filtered_right_bottom[["vl_block_memory_size","vl_block_memory_size_mb","vl_intra_task_execution_time_device_func_cpu","vl_additional_time_cpu","vl_communication_time_cpu","vl_intra_task_execution_time_device_func_gpu","vl_additional_time_gpu","vl_communication_time_gpu"]].sort_values(by=["vl_block_memory_size"], ascending=[True])
@@ -388,7 +415,6 @@ def generate_graph(df, dst_path_figs, query):
 
 
     elif query == 'query_5.sql':
-        
         # Filtering query
         df_filtered = df[
                         (df["ds_resource"] == "MINOTAURO_9_NODES_1_CORE")
@@ -525,7 +551,6 @@ def generate_graph(df, dst_path_figs, query):
 
 
     elif query == 'query_6.sql':
-        
         # Filter query
         df_filtered = df[
                         (df["ds_resource"] == "MINOTAURO_9_NODES_1_CORE")
@@ -579,7 +604,6 @@ def generate_graph(df, dst_path_figs, query):
 
     
     elif (query == 'query_7.sql'):
-        
         # Filter query
         df_filtered = df[
                         (df["ds_resource"] == "MINOTAURO_9_NODES_1_CORE")
@@ -598,7 +622,7 @@ def generate_graph(df, dst_path_figs, query):
 
         df_filtered_mean.sort_values(by=['vl_grid_row_dimension'], ascending=[False], inplace=True)
         
-        df_filtered_mean = df_filtered_mean[[x_value,'device_skewness','vl_total_execution_time','vl_intra_task_execution_time_full_func','vl_intra_task_execution_time_device_func']]
+        df_filtered_mean = df_filtered_mean[[x_value,'device_skewness','vl_intra_task_execution_time_full_func','vl_intra_task_execution_time_device_func']]
         
         X_axis = np.arange(len(df_filtered_mean[x_value].drop_duplicates()))
         
@@ -632,7 +656,6 @@ def generate_graph(df, dst_path_figs, query):
     
     
     elif (query == 'query_8.sql'):
-
         # Filter query
         df_filtered = df[
                         (df["ds_resource"] == "MINOTAURO_9_NODES_1_CORE")
@@ -734,7 +757,6 @@ def generate_graph(df, dst_path_figs, query):
 
     
     elif (query == 'query_9.sql'):
-        
         # Filter query
         df_filtered = df[
                         (df["ds_resource"] == "MINOTAURO_9_NODES_1_CORE")
@@ -834,7 +856,7 @@ def generate_graph(df, dst_path_figs, query):
 
 
     elif (query == 'query_10.sql'):
-        
+        df_filtered = df
         # PRE-PROCESSING (NORMALIZING DATA)
         min_value = df_filtered["Block size"].min()
         max_value = df_filtered["Block size"].max()
@@ -881,7 +903,6 @@ def generate_graph(df, dst_path_figs, query):
         ax = plt.gca()
         corrMatrix = df_filtered.corr(method='spearman')
         # CORRELATION MATRIX
-        print(corrMatrix)
         sns.heatmap(corrMatrix, annot=True, fmt='.3f', cmap='coolwarm', annot_kws={'size': 16})
         plt.xticks(rotation=30, ha='right')
 
@@ -890,7 +911,6 @@ def generate_graph(df, dst_path_figs, query):
 
 
     elif (query == 'query_11.sql'):
-        
         # Filter query
         df_filtered = df[
                         (df["ds_resource"] == "MINOTAURO_9_NODES_1_CORE")
@@ -952,12 +972,12 @@ def generate_graph(df, dst_path_figs, query):
         plt.savefig(dst_path_figs+'fig_'+str(query)+'.png',bbox_inches='tight',dpi=100)
 
     elif (query == 'query_12.sql'):
-        
         # Filter query
         df_filtered = df[
                         (df["ds_resource"] == "MINOTAURO_9_NODES_1_CORE")
                         & (df["ds_dataset"].isin(["S_2GB_1","S_2GB_2"]))
                         & (df["ds_parameter_type"] == "VAR_GRID_SHAPE_MATMUL_1")
+                        & (df["vl_concat_block_size_mb_grid_row_x_column_dimension"] != "8 (16 x 16)")
                         & (df["ds_function"] == "MATMUL_FUNC")
                         ]
         
@@ -965,66 +985,43 @@ def generate_graph(df, dst_path_figs, query):
 
         ds_dataset = df_filtered["ds_dataset"].unique()
         ds_dataset = '(' + ', '.join(ds_dataset) + ')'
+
+        x_value = 'vl_concat_block_size_mb_grid_row_x_column_dimension'
+
+        df_filtered_mean = df_filtered.groupby([x_value,'device_sparsity'], as_index=False).mean()
+
+        df_filtered_mean.sort_values(by=['vl_grid_row_dimension'], ascending=[False], inplace=True)
         
-        # Define the size of the overall chart area in inches
-        chart_width = 6.4
-        chart_height = 4.8
+        df_filtered_mean = df_filtered_mean[[x_value,'device_sparsity','vl_total_execution_time','vl_intra_task_execution_time_full_func','vl_intra_task_execution_time_device_func']]
+        
+        X_axis = np.arange(len(df_filtered_mean[x_value].drop_duplicates()))
+        
+        fig, axs = plt.subplots(2, 1, figsize=(7, 8), sharey='row', sharex='col')
 
-        # Create a figure with a fixed size
-        fig = plt.figure(figsize=(chart_width, chart_height))
+        # Plot the first chart (top - Bar chart)
+        axs[0].bar(X_axis - 0.2,df_filtered_mean[(df_filtered_mean.device_sparsity=="CPU dense")]["vl_intra_task_execution_time_full_func"], 0.3, label = "Dense dataset", color='C0', alpha = 0.5, zorder=3)
+        axs[0].bar(X_axis + 0.2,df_filtered_mean[(df_filtered_mean.device_sparsity=="CPU sparse")]["vl_intra_task_execution_time_full_func"], 0.3, label = "Sparse dataset", color='red', alpha = 0.5, hatch='oo', zorder=3)
+        axs[0].legend(loc=(-0.000,0.99), frameon=False, labelspacing=0.01, ncol=2, borderpad=0.1)
+        axs[0].set_ylabel('Usr. Code Time CPU (s)')  # Add y-axis label
+        axs[0].grid(zorder=0,axis='y')
+        axs[0].set_title('Matmul', pad=20)
+        axs[0].set_xticks(X_axis, df_filtered_mean[x_value].drop_duplicates(), rotation=30)
 
-        left_margin = 0.15
-        bottom_margin = -0.15
-        plot_width = 1
-        plot_height = 1
+        # Plot the second chart (bottom - Bar chart)
+        axs[1].bar(X_axis - 0.2, df_filtered_mean[(df_filtered_mean.device_sparsity=="GPU dense")]["vl_intra_task_execution_time_full_func"], 0.3, color='C0', alpha = 0.5, zorder=3)
+        axs[1].bar(X_axis + 0.2, df_filtered_mean[(df_filtered_mean.device_sparsity=="GPU sparse")]["vl_intra_task_execution_time_full_func"], 0.3, color='red', alpha = 0.5, hatch='oo', zorder=3)
+        axs[1].set_ylabel('Usr. Code Time GPU (s)')  # Add y-axis label
+        axs[1].set_xlabel('Block size MB (Grid Dimension)')
+        axs[1].grid(zorder=0,axis='y')
+        axs[1].set_xticks(X_axis, df_filtered_mean[x_value].drop_duplicates(), rotation=30)
 
-        # Calculate the position of the plot area
-        plot_left = left_margin
-        plot_bottom = bottom_margin
+        fig.autofmt_xdate(rotation=30, ha='right')
 
-        # Create the plot within the defined plot area
-        ax = fig.add_axes([plot_left, plot_bottom, plot_width, plot_height])
+        # Adjust spacing
+        plt.subplots_adjust(wspace=0.01, hspace=0.25)
 
-        x_value_list = ['vl_concat_block_size_mb_grid_row_x_column_dimension']
-
-        for x_value in x_value_list:
-
-            if x_value == 'vl_concat_grid_row_x_column_dimension_block_size_mb':
-                x_value_title = 'Grid Shape (Block Size MB)'
-            elif x_value == 'vl_concat_block_size_mb_grid_row_x_column_dimension':
-                x_value_title = 'Block Size MB (Grid Shape)'
-            
-            df_filtered_mean = df_filtered.groupby([x_value,'device_sparsity'], as_index=False).mean()
-
-            df_filtered_mean.sort_values(by=['vl_grid_row_dimension'], ascending=[False], inplace=True)
-            
-            df_filtered_mean = df_filtered_mean[[x_value,'device_sparsity','vl_intra_task_execution_time_full_func']]
-
-            plt.figure(2)
-            X_axis = np.arange(len(df_filtered_mean[x_value].drop_duplicates()))
-            plt.bar(X_axis - 0.2, df_filtered_mean[(df_filtered_mean.device_sparsity=="CPU dense")]["vl_intra_task_execution_time_full_func"], 0.3, label = "Dense dataset", color='C0', alpha = 0.25, zorder=3)
-            plt.bar(X_axis + 0.2, df_filtered_mean[(df_filtered_mean.device_sparsity=="CPU sparse")]["vl_intra_task_execution_time_full_func"], 0.3, label = "Sparse dataset", color='C0', alpha = 0.25, hatch='oo', zorder=3)
-            plt.xticks(X_axis, df_filtered_mean[x_value].drop_duplicates(), rotation=90)
-            plt.xlabel(x_value_title)
-            plt.ylabel('User Code Exec. Time CPU (s)')
-            plt.grid(zorder=0,axis='y')
-            plt.figlegend(loc='upper center', ncol=2, frameon=False)
-            plt.ylim([0, 250])
-            # Save plots
-            plt.savefig(dst_path_figs+'fig_'+str(query)+'_CPU.png',bbox_inches='tight',dpi=100)
-
-            plt.figure(3)
-            X_axis = np.arange(len(df_filtered_mean[x_value].drop_duplicates()))
-            plt.bar(X_axis - 0.2, df_filtered_mean[(df_filtered_mean.device_sparsity=="GPU dense")]["vl_intra_task_execution_time_full_func"], 0.3, label = "Dense dataset", color='C0', alpha = 0.25, zorder=3)
-            plt.bar(X_axis + 0.2, df_filtered_mean[(df_filtered_mean.device_sparsity=="GPU sparse")]["vl_intra_task_execution_time_full_func"], 0.3, label = "Sparse dataset", color='C0', alpha = 0.25, hatch='oo', zorder=3)
-            plt.xticks(X_axis, df_filtered_mean[x_value].drop_duplicates(), rotation=90)
-            plt.xlabel(x_value_title)
-            plt.ylabel('User Code Exec. Time GPU (s)')
-            plt.grid(zorder=0,axis='y')
-            plt.figlegend(loc='upper center', ncol=2, frameon=False)
-            plt.ylim([0, 11])
-            # Save plots
-            plt.savefig(dst_path_figs+'fig_'+str(query)+'_GPU.png',bbox_inches='tight',dpi=100)
+        # Save plots
+        plt.savefig(dst_path_figs+'fig_'+str(query)+'.png',bbox_inches='tight',dpi=100)
     
     else:
         print('error: invalid query')
@@ -1033,28 +1030,75 @@ def generate_graph(df, dst_path_figs, query):
 
 def setup_database():
 
-    path_schemas = '/raw_data'
+    path_schemas = 'raw_data/'
 
     schemas = get_folder_names(path_schemas)
 
     # Setup each schema
     for schema in schemas:
 
+        full_path_schema = os.path.abspath(path_schemas)+'/'+schema+'/'
+        # tables = get_file_names(full_path_schema)
+        tables = ['DEVICE.csv','ALGORITHM.csv','FUNCTION.csv','CONFIGURATION.csv','RESOURCE.csv','DATASET.csv','PARAMETER_TYPE.csv','PARAMETER.csv','EXPERIMENT_RAW.csv']
+
         # Open connection to the database
         cur, conn = open_connection(schema)
 
         # Set database schemas
-        sql_create_schema = "CREATE SCHEMA %s;"
-        cur.execute(sql_create_schema, (schema))
-        # Create tables
-        sql_create_table =  "CALL CREATE_TABLES();"
-        cur.execute(sql_create_table)
-        # Load tables
-        sql_load_table = "CALL LOAD_TABLES(%s);"
-        cur.execute(sql_load_table,(schema))
+        sql_create_schema = "CREATE SCHEMA IF NOT EXISTS "+schema+";"
+        cur.execute(sql_create_schema)
 
-        # Close connection to the database
+        # Create tables
+        sql_create_table =  "CALL CREATE_TABLES('"+schema+"');"
+        cur.execute(sql_create_table)
+        conn.commit()
+
+        # Commit and close connection to the database
+        conn.commit()
         close_connection(cur, conn)
+
+        # Load dimension tables
+        for table in tables:
+
+            table_name = table.strip('.csv')
+            table_path_name = full_path_schema+table
+
+            insert_data(schema, table_name, table_path_name)
+
+
+# Function to insert CSV data into PostgreSQL table
+def insert_data(schema, table_name, csv_file_path):
+
+    # Open connection to the database
+    cur, conn = open_connection(schema)
+
+    # Read CSV file and insert data into the specified table
+    with open(csv_file_path, 'r') as file:
+
+        csv_data = csv.reader(file)
+        next(csv_data)  # Skip header if present
+
+        for row in csv_data:
+
+            # replace NULL by None
+            row = [None if col.upper() == 'NULL' else col for col in row]
+
+            # Construct the INSERT query
+            insert_query = sql.SQL("INSERT INTO {}.{} VALUES ({})").format(
+                sql.Identifier(schema.lower()),
+                sql.Identifier(table_name.lower()),
+                sql.SQL(', ').join(sql.Placeholder() for _ in row)
+            )
+
+            cur.execute(insert_query, row)
+
+    conn.commit()
+    cur.close()
+    print('\n\n###############')
+    print(f"CSV data successfully inserted into {table_name} table.")
+    print('###############')
+    
+
 
 
 def get_folder_names(path):
@@ -1069,31 +1113,30 @@ def get_folder_names(path):
     items = os.listdir(path)
 
     # Filter out folders from the list
-    folder_names = [item for item in items if (os.path.isdir(os.path.join(path, item)) and item != 'paraver')]
+    folder_names = [item for item in items if (os.path.isdir(os.path.join(path, item)) and item != 'combined_data')]
 
     return folder_names
 
 
-# def get_file_names(folder_path):
-#     file_names = []
+def get_file_names(folder_path):
+    file_names = []
 
-#     # Check if the folder path exists
-#     if not os.path.exists(folder_path):
-#         print(f"Folder path '{folder_path}' does not exist.")
-#         return file_names
+    # Check if the folder path exists
+    if not os.path.exists(folder_path):
+        print(f"Folder path '{folder_path}' does not exist.")
+        return file_names
 
-#     # Get the list of items in the folder
-#     items = os.listdir(folder_path)
+    # Get the list of items in the folder
+    items = os.listdir(folder_path)
 
-#     # Filter out files from the list
-#     file_names = [item for item in items if os.path.isfile(os.path.join(folder_path, item))]
+    # Filter out files from the list
+    file_names = [item for item in items if os.path.isfile(os.path.join(folder_path, item))]
 
-#     return file_names
+    return file_names
 
 
 def get_files_with_prefix(path, prefix):
     file_names = []
-
     # Check if the path exists
     if not os.path.exists(path):
         print(f"Path '{path}' does not exist.")

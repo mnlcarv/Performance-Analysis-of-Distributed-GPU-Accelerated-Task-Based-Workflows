@@ -1,5 +1,5 @@
 WITH T_CPU AS (
-                                    SELECT
+                                     SELECT
                                     Y.VL_TOTAL_EXECUTION_TIME,
                                     Y.VL_INTER_TASK_EXECUTION_TIME,
 									Y.VL_INTRA_TASK_EXECUTION_TIME_FULL_FUNC,
@@ -166,7 +166,7 @@ WITH T_CPU AS (
                                             AND A.NR_ALGORITHM_ITERATION <> 0
                                         ) X
 										WHERE
-										X.DS_FUNCTION = 'ADD_FUNC'
+										X.DS_FUNCTION = 'MATMUL_FUNC'
                                         GROUP BY
                                         X.ID_PARAMETER,
                                         X.CD_PARAMETER,
@@ -215,7 +215,7 @@ WITH T_CPU AS (
 
                                 ),
                     T_GPU AS (
-                                    SELECT
+                                SELECT
                                     Y.VL_TOTAL_EXECUTION_TIME,
                                     Y.VL_INTER_TASK_EXECUTION_TIME,
                                     Y.VL_INTRA_TASK_EXECUTION_TIME_FULL_FUNC,
@@ -382,7 +382,7 @@ WITH T_CPU AS (
                                             AND A.NR_ALGORITHM_ITERATION <> 0
                                         ) X
 										WHERE
-										X.DS_FUNCTION = 'ADD_FUNC'
+										X.DS_FUNCTION = 'MATMUL_FUNC'
                                         GROUP BY
                                         X.ID_PARAMETER,
                                         X.CD_PARAMETER,
