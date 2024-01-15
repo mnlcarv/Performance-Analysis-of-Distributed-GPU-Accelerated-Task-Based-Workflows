@@ -1,13 +1,8 @@
-import algorithms.dislib as ds
+import dislib as ds
 
 def generate_dataset(vl_dataset_row_dimension, vl_dataset_column_dimension, vl_block_row_dimension, vl_block_column_dimension, vl_grid_row_dimension, vl_grid_column_dimension, nr_random_state, vl_data_skewness, ds_algorithm):
 
-    # Return a ds-array dataset for algorithms from dislib
-    if (ds_algorithm == "KMEANS") or (ds_algorithm == "MATMUL_DISLIB"):
-        
-        return ds.random_array((vl_dataset_row_dimension, vl_dataset_column_dimension), (vl_block_row_dimension, vl_block_column_dimension), random_state=nr_random_state, data_skewness=vl_data_skewness)
-    
-    # Return a blocked numpy array dataset for matmul fma
+    # dataset structure not belonging to dislib (generate dataset as a blocked numpy array for matmul fma)
     if (ds_algorithm == "MATMUL_FMA"):
 
         # Generate the dataset in a distributed manner
@@ -29,3 +24,8 @@ def generate_dataset(vl_dataset_row_dimension, vl_dataset_column_dimension, vl_b
                                                 bid=bid))
                     bid += 1
         return A
+    
+    # generate dataset as ds-array for dislib algorithms 
+    else:
+
+        return ds.random_array((vl_dataset_row_dimension, vl_dataset_column_dimension), (vl_block_row_dimension, vl_block_column_dimension), random_state=nr_random_state, data_skewness=vl_data_skewness)

@@ -4,11 +4,14 @@ from db_config.config import open_connection, close_connection
 
 def main():
 
-    dst_path_parameters = '/parameters/tb_parameters.csv'
+    dst_path_parameters = 'parameters/tb_parameters.csv'
 
     # Open connection to the database
     schema='schema_kmeans'
     cur, conn = open_connection(schema)
+
+    sql_create_schema = "SET search_path = "+schema+";"
+    cur.execute(sql_create_schema)
 
     # Set sql query (filter it according to the desired combination of parameters)
     sql_query = """SELECT
@@ -58,10 +61,13 @@ def main():
                     FROM PARAMETER A
                     INNER JOIN RESOURCE B ON (A.ID_RESOURCE = B.ID_RESOURCE)
                     INNER JOIN DATASET C ON (A.ID_DATASET = C.ID_DATASET)
+                    -- ### EXAMPLE OF FILTER FOR K-MEANS ###
+                    -- START FILTER
                     WHERE
                     (SELECT X.DS_PARAMETER_TYPE FROM PARAMETER_TYPE X WHERE X.ID_PARAMETER_TYPE = A.ID_PARAMETER_TYPE) in ('VAR_GRID_ROW_5')
                     AND B.DS_RESOURCE = 'MINOTAURO_9_NODES_1_CORE'
-                    AND C.DS_DATASET IN ('S_10GB_1')
+                    AND C.DS_DATASET IN ('S_1GB_1')
+                    -- END FILTER
                     ORDER BY A.ID_PARAMETER;"""
     
     # Get dataframe from query

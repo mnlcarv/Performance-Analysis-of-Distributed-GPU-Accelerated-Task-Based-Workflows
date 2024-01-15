@@ -1,6 +1,6 @@
 # How to run experiments
 
-The experiments were executed with the distributed system [COMPSs](https://compss-doc.readthedocs.io/en/stable/index.html) using the version with bindings for Python (PyCOMPSs).
+The experiments were executed on the [Minotauro cluster](https://bsc.es/supportkc/docs/Minotauro/overview/) with the distributed system [COMPSs](https://compss-doc.readthedocs.io/en/stable/index.html) using the version with bindings for Python (PyCOMPSs).
 
 COMPSs applications are executed with the ```runcompss``` command, as shown in the example below:
 ```
