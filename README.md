@@ -3,8 +3,7 @@ This is the public repository of an empirical study about the execution performa
 
 
 # Analysis method
-Our focus of this study is on analyzing the impact of GPUs on task-based workflows commonly used data science pipelines, which are composed of multiple processing stages that perform different tasks to move data from one stage to a next
-stage (typically represented by a Directed Acyclic Graph (DAG)).
+Our focus is on analyzing the impact of GPUs on task-based workflows commonly used data science pipelines, which are composed of multiple processing stages that perform different tasks to move data from one stage to a next stage (typically represented by a Directed Acyclic Graph (DAG)).
 
 ## Task processing stages
 Generally, task processing involves data computation, represented by the task user code, and data movement, represented mainly by data (de-)serialization. Task user code has the following processing stages:
